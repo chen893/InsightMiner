@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsightMiner - AI驱动的需求挖掘工具</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#5B6EF7',
+            secondary: '#8C9EFF',
+            accent: '#3D4EDB',
+            background: '#F8F9FC',
+            text: {
+              dark: '#2A2C35',
+              medium: '#6B7280',
+            },
+            border: '#E2E8F0',
+            success: '#10B981',
+            warning: '#F59E0B',
+            error: '#EF4444',
+            info: '#3B82F6',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-text-dark">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <i class="fas fa-lightbulb text-primary text-2xl mr-3"></i>
+          <span class="text-xl font-semibold text-primary">InsightMiner</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-primary font-medium">首页</a>
+          <a href="analysis.html" class="text-text-medium hover:text-primary">需求分析</a>
+          <a href="history.html" class="text-text-medium hover:text-primary">历史记录</a>
+          <a href="help.html" class="text-text-medium hover:text-primary">帮助</a>
+          <a href="about.html" class="text-text-medium hover:text-primary">关于</a>
+        </div>
+        <div class="md:hidden">
+          <button class="text-text-medium hover:text-primary">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <main class="pt-16">
+    <!-- Hero部分 -->
+    <section class="bg-gradient-to-r from-primary to-accent text-white py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            AI驱动的需求挖掘工具
+          </h1>
+          <p class="text-lg md:text-xl mb-8 opacity-90">
+            通过人工智能技术，从文本中智能提炼市场机遇与产品需求洞察
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="analysis.html"
+              class="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors">
+              开始分析
+            </a>
+            <a href="help.html"
+              class="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition-colors">
+              使用教程
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 特点介绍 -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">核心特点</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+              <i class="fas fa-bolt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">快速分析</h3>
+            <p class="text-text-medium">无需注册登录，即刻开始文本分析，快速获取需求洞察</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+              <i class="fas fa-brain text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">AI驱动</h3>
+            <p class="text-text-medium">基于OpenAI先进算法，智能解析文本中的潜在需求</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+              <i class="fas fa-chart-line text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">数据驱动</h3>
+            <p class="text-text-medium">提供数据支持的决策建议，降低创新风险</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">适用场景</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-lightbulb text-primary text-2xl"></i>
+            </div>
+            <h3 class="font-semibold mb-2">产品创意验证</h3>
+            <p class="text-text-medium">快速验证产品创意的市场潜力</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-comments text-primary text-2xl"></i>
+            </div>
+            <h3 class="font-semibold mb-2">用户反馈分析</h3>
+            <p class="text-text-medium">批量分析用户反馈，提炼关键需求</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-search text-primary text-2xl"></i>
+            </div>
+            <h3 class="font-semibold mb-2">市场调研</h3>
+            <p class="text-text-medium">解析市场调研数据，发现机会</p>
+          </div>
+          <div class="text-center p-6">
+            <div class="w-16 h-16 mx-auto bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-chart-pie text-primary text-2xl"></i>
+            </div>
+            <h3 class="font-semibold mb-2">竞品分析</h3>
+            <p class="text-text-medium">提取竞品分析报告中的关键信息</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 开始使用CTA -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="bg-gradient-to-r from-primary to-accent rounded-2xl text-white p-12 text-center">
+          <h2 class="text-3xl font-bold mb-6">准备好开始了吗？</h2>
+          <p class="text-lg mb-8 opacity-90">立即体验AI驱动的需求挖掘工具，发现更多创新机会</p>
+          <a href="analysis.html"
+            class="inline-block bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors">
+            免费开始使用
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t border-border">
+    <div class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-lightbulb text-primary text-2xl mr-3"></i>
+            <span class="text-xl font-semibold text-primary">InsightMiner</span>
+          </div>
+          <p class="text-text-medium">
+            基于人工智能技术的轻量化在线需求挖掘工具，助力产品创新与市场决策
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="analysis.html" class="text-text-medium hover:text-primary">需求分析</a></li>
+            <li><a href="history.html" class="text-text-medium hover:text-primary">历史记录</a></li>
+            <li><a href="help.html" class="text-text-medium hover:text-primary">使用教程</a></li>
+            <li><a href="about.html" class="text-text-medium hover:text-primary">关于我们</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">联系我们</h3>
+          <ul class="space-y-2">
+            <li class="text-text-medium">
+              <i class="far fa-envelope mr-2"></i>
+              contact@insightminer.com
+            </li>
+            <li class="flex space-x-4 mt-4">
+              <a href="#" class="text-text-medium hover:text-primary">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="#" class="text-text-medium hover:text-primary">
+                <i class="fab fa-twitter text-xl"></i>
+              </a>
+              <a href="#" class="text-text-medium hover:text-primary">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-border mt-8 pt-8 text-center text-text-medium">
+        <p>© 2025 InsightMiner 团队. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

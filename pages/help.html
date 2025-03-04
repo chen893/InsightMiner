@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帮助中心 - InsightMiner</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#5B6EF7',
+            secondary: '#8C9EFF',
+            accent: '#3D4EDB',
+            background: '#F8F9FC',
+            text: {
+              dark: '#2A2C35',
+              medium: '#6B7280',
+            },
+            border: '#E2E8F0',
+            success: '#10B981',
+            warning: '#F59E0B',
+            error: '#EF4444',
+            info: '#3B82F6',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-text-dark">
+  <!-- 导航栏 -->
+  <nav class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="flex items-center">
+            <i class="fas fa-lightbulb text-primary text-2xl mr-3"></i>
+            <span class="text-xl font-semibold text-primary">InsightMiner</span>
+          </a>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-text-medium hover:text-primary">首页</a>
+          <a href="analysis.html" class="text-text-medium hover:text-primary">需求分析</a>
+          <a href="history.html" class="text-text-medium hover:text-primary">历史记录</a>
+          <a href="help.html" class="text-primary font-medium">帮助</a>
+          <a href="about.html" class="text-text-medium hover:text-primary">关于</a>
+        </div>
+        <div class="md:hidden">
+          <button class="text-text-medium hover:text-primary">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <main class="pt-16">
+    <!-- Hero部分 -->
+    <section class="bg-gradient-to-r from-primary to-accent text-white py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl font-bold mb-6">帮助中心</h1>
+          <p class="text-lg opacity-90 mb-8">
+            了解如何使用 InsightMiner 进行需求分析，获取使用技巧和常见问题解答
+          </p>
+          <div class="relative">
+            <input type="text" placeholder="搜索帮助文档..."
+              class="w-full px-6 py-3 rounded-lg text-text-dark focus:outline-none focus:ring-2 focus:ring-white">
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <i class="fas fa-search text-text-medium"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container mx-auto px-4 py-12">
+      <div class="max-w-5xl mx-auto">
+        <!-- 快速入门 -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-6">快速入门</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="#" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-rocket text-primary text-xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">新手指南</h3>
+              <p class="text-text-medium text-sm">了解 InsightMiner 的基本功能和使用流程</p>
+            </a>
+            <a href="#" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-book text-primary text-xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">使用教程</h3>
+              <p class="text-text-medium text-sm">详细的功能说明和操作指南</p>
+            </a>
+            <a href="#" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-lightbulb text-primary text-xl"></i>
+              </div>
+              <h3 class="font-semibold mb-2">使用技巧</h3>
+              <p class="text-text-medium text-sm">提高分析效率的实用技巧</p>
+            </a>
+          </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-6">常见问题</h2>
+          <div class="bg-white rounded-lg shadow-md" x-data="{ selected: null }">
+            <div class="border-b border-border p-4">
+              <button @click="selected !== 1 ? selected = 1 : selected = null"
+                class="w-full flex justify-between items-center">
+                <span class="font-medium">如何开始第一次需求分析？</span>
+                <i class="fas" :class="selected === 1 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+              <div x-show="selected === 1" class="mt-4 text-text-medium">
+                <p>1. 点击首页的"开始分析"按钮或导航栏的"需求分析"</p>
+                <p>2. 在文本输入框中输入您要分析的内容</p>
+                <p>3. 点击"开始分析"按钮，等待分析结果</p>
+                <p>4. 查看分析结果，可以导出或保存到历史记录</p>
+              </div>
+            </div>
+
+            <div class="border-b border-border p-4">
+              <button @click="selected !== 2 ? selected = 2 : selected = null"
+                class="w-full flex justify-between items-center">
+                <span class="font-medium">支持哪些文件格式？</span>
+                <i class="fas" :class="selected === 2 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+              <div x-show="selected === 2" class="mt-4 text-text-medium">
+                <p>目前支持以下文件格式：</p>
+                <ul class="list-disc list-inside mt-2">
+                  <li>文本文件 (.txt)</li>
+                  <li>Word文档 (.docx)</li>
+                  <li>PDF文件 (.pdf)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="border-b border-border p-4">
+              <button @click="selected !== 3 ? selected = 3 : selected = null"
+                class="w-full flex justify-between items-center">
+                <span class="font-medium">如何导出分析结果？</span>
+                <i class="fas" :class="selected === 3 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+              <div x-show="selected === 3" class="mt-4 text-text-medium">
+                <p>在分析结果页面，您可以：</p>
+                <ul class="list-disc list-inside mt-2">
+                  <li>点击"导出PDF报告"按钮导出完整报告</li>
+                  <li>点击"导出Excel"按钮导出数据表格</li>
+                  <li>使用"分享结果"功能生成分享链接</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="p-4">
+              <button @click="selected !== 4 ? selected = 4 : selected = null"
+                class="w-full flex justify-between items-center">
+                <span class="font-medium">如何管理历史记录？</span>
+                <i class="fas" :class="selected === 4 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+              </button>
+              <div x-show="selected === 4" class="mt-4 text-text-medium">
+                <p>在历史记录页面，您可以：</p>
+                <ul class="list-disc list-inside mt-2">
+                  <li>查看所有历史分析记录</li>
+                  <li>使用搜索和筛选功能找到特定记录</li>
+                  <li>编辑或删除单条记录</li>
+                  <li>清空所有历史记录</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 使用教程 -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-6">使用教程</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+                <div class="w-full h-full flex items-center justify-center bg-primary bg-opacity-10">
+                  <i class="fas fa-play-circle text-primary text-4xl"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-semibold mb-2">快速开始教程</h3>
+                <p class="text-text-medium text-sm mb-4">了解 InsightMiner 的基本功能和操作流程</p>
+                <a href="#" class="text-primary hover:text-accent">
+                  观看视频 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+                <div class="w-full h-full flex items-center justify-center bg-primary bg-opacity-10">
+                  <i class="fas fa-play-circle text-primary text-4xl"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-semibold mb-2">高级功能教程</h3>
+                <p class="text-text-medium text-sm mb-4">深入了解数据分析和可视化功能</p>
+                <a href="#" class="text-primary hover:text-accent">
+                  观看视频 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 联系支持 -->
+        <section class="bg-white rounded-lg shadow-md p-8">
+          <div class="text-center">
+            <h2 class="text-2xl font-bold mb-4">需要更多帮助？</h2>
+            <p class="text-text-medium mb-6">
+              如果您在使用过程中遇到任何问题，欢迎联系我们的客服团队
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+              <a href="#"
+                class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-accent transition-colors">
+                <i class="far fa-envelope mr-2"></i>
+                发送邮件
+              </a>
+              <a href="#"
+                class="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                <i class="far fa-comment-dots mr-2"></i>
+                在线客服
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-white border-t border-border mt-12">
+    <div class="container mx-auto px-4 py-6">
+      <div class="text-center text-text-medium">
+        <p>© 2025 InsightMiner 团队. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
