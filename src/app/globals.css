@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 230 91% 66%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 100% 77%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 230 71% 55%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 230 91% 66%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 230 91% 66%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+}
+
+@layer components {
+  /* 动画效果 */
+  .animate-float {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .animate-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* 渐变文本 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* 卡片样式 */
+  .card-interactive {
+    @apply rounded-lg bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .card-hover-border {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* 按钮样式 */
+  .btn-primary {
+    @apply rounded-lg bg-primary px-6 py-2 text-white shadow-md transition-colors duration-300 hover:bg-accent;
+  }
+
+  .btn-outline {
+    @apply rounded-lg border-2 border-primary px-6 py-2 text-primary transition-colors duration-300 hover:bg-primary hover:text-white;
+  }
+
+  /* 输入框样式 */
+  .input-primary {
+    @apply w-full rounded-lg border border-border bg-white px-4 py-2 transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  /* 图标容器 */
+  .icon-box {
+    @apply flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 hover:scale-110;
+  }
+
+  .icon-box-lg {
+    @apply flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-300 hover:scale-110;
+  }
+
+  /* 标题装饰 */
+  .title-decorated {
+    @apply relative pb-3 after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-20 after:-translate-x-1/2 after:rounded-full after:bg-primary;
+  }
+
+  /* 加载动画 */
+  .loading-pulse {
+    @apply animate-pulse rounded-lg bg-primary/20;
+  }
+
+  /* 毛玻璃导航栏 */
+  .nav-glass {
+    @apply border-b border-white/20 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60;
+  }
+
+  /* 响应式间距 */
+  .section-spacing {
+    @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  }
+
+  /* 渐变边框 */
+  .gradient-border {
+    @apply relative rounded-lg bg-gradient-to-r from-primary to-accent p-[1px];
+  }
+
+  /* 阴影悬浮效果 */
+  .shadow-hover {
+    @apply transition-shadow duration-300 hover:shadow-lg;
+  }
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-primary/20 transition-colors;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/30;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 文本选择样式 */
+::selection {
+  @apply bg-primary/20 text-primary;
+}
+
+/* 输入框聚焦样式 */
+input:focus,
+textarea:focus {
+  @apply border-primary outline-none ring-2 ring-primary/20;
+}
+
+/* 按钮过渡效果 */
+button,
+a {
+  @apply transition-all duration-200;
+}
+
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-semibold tracking-tight;
+}
+
+/* 段落样式 */
+p {
+  @apply leading-relaxed text-text-medium;
+}
+
+/* 卡片悬浮效果 */
+.hover-card {
+  @apply transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* 渐变背景 */
+.gradient-primary {
+  @apply bg-gradient-to-r from-primary to-accent text-white;
+}
+
+/* 毛玻璃效果 */
+.glass {
+  @apply border border-white/20 bg-white/80 backdrop-blur-md;
+}
+
+/* 响应式容器边距 */
+.container {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* 图标容器 */
+.icon-container {
+  @apply flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary;
+}
+
+/* 段落样式 */
+p {
+  @apply leading-relaxed text-text-medium;
+}

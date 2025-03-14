@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  PENDING
+  PROCESSING
+  COMPLETED
+  ERROR
+}
+
+model Analysis {
+  id           String    @id @default(cuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  title        String    @default("未命名分析")
+  inputText    String
+  status       Status    @default(PENDING)
+  analysisTime Int       @default(0)
+  isBookmarked Boolean   @default(false)
+  shareLink    String?
+  results      Result[]
+  feedback     Feedback?
+  tags         Tag[]     @relation("AnalysisTags")
+}
+
+model Result {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  analysisId String
+  type       String // core, opportunity, solution
+  title      String
+  content    String   @db.Text
+  analysis   Analysis @relation(fields: [analysisId], references: [id])
+}
+
+model Feedback {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  analysisId String   @unique
+  analysis   Analysis @relation(fields: [analysisId], references: [id])
+  rating     Int
+  comment    String?  @db.Text
+}
+
+model Tag {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  color     String
+  createdAt DateTime   @default(now())
+  analyses  Analysis[] @relation("AnalysisTags")
+}
+
+model ExportHistory {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  format      String
+  fileName    String
+  filePath    String
+  status      Status   @default(PENDING)
+  exportTime  Int      @default(0) // 导出耗时（秒）
+  fileSize    Int      @default(0) // 文件大小（字节）
+  downloadUrl String?
+}

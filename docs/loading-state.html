@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>分析中 - InsightMiner</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#5B6EF7',
+              secondary: '#8C9EFF',
+              accent: '#3D4EDB',
+              background: '#F8F9FC',
+              text: {
+                dark: '#2A2C35',
+                medium: '#6B7280',
+              },
+              border: '#E2E8F0',
+              success: '#10B981',
+              warning: '#F59E0B',
+              error: '#EF4444',
+              info: '#3B82F6',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+      body {
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .animate-spin-slow {
+        animation: spin 3s linear infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .animate-pulse-slow {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background-color: #e2e8f0;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background-color: #5b6ef7;
+        border-radius: 2px;
+        transition: width 0.5s ease;
+      }
+
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+
+        100% {
+          width: 100%;
+        }
+      }
+
+      .animate-progress {
+        animation: progress 30s linear;
+      }
+    </style>
+  </head>
+
+  <body class="bg-background text-text-dark">
+    <!-- 导航栏 -->
+    <nav class="fixed z-10 w-full bg-white shadow-sm">
+      <div class="container mx-auto px-4">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <a href="index.html" class="flex items-center">
+              <i class="fas fa-lightbulb mr-3 text-2xl text-primary"></i>
+              <span class="text-xl font-semibold text-primary"
+                >InsightMiner</span
+              >
+            </a>
+          </div>
+          <div class="hidden items-center space-x-8 md:flex">
+            <a href="index.html" class="text-text-medium hover:text-primary"
+              >首页</a
+            >
+            <a href="analysis.html" class="font-medium text-primary"
+              >需求分析</a
+            >
+            <a href="history.html" class="text-text-medium hover:text-primary"
+              >历史记录</a
+            >
+            <a href="help.html" class="text-text-medium hover:text-primary"
+              >帮助</a
+            >
+            <a href="about.html" class="text-text-medium hover:text-primary"
+              >关于</a
+            >
+          </div>
+          <div class="md:hidden">
+            <button class="text-text-medium hover:text-primary">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="flex min-h-screen items-center justify-center pt-16">
+      <div class="container mx-auto px-4">
+        <div class="mx-auto max-w-2xl">
+          <!-- 加载状态卡片 -->
+          <div class="rounded-lg bg-white p-8 shadow-md">
+            <!-- 加载动画 -->
+            <div class="mb-8 flex justify-center">
+              <div class="relative">
+                <div
+                  class="h-24 w-24 rounded-full border-4 border-primary border-opacity-20"
+                ></div>
+                <div
+                  class="animate-spin-slow absolute left-0 top-0 h-24 w-24 rounded-full border-4 border-primary border-t-transparent"
+                ></div>
+                <div
+                  class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+                >
+                  <i
+                    class="fas fa-lightbulb animate-pulse-slow text-2xl text-primary"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- 状态文本 -->
+            <div class="mb-8 text-center">
+              <h2 class="mb-4 text-2xl font-bold">正在分析中</h2>
+              <p class="mb-2 text-text-medium">
+                我们正在使用AI技术分析您提供的内容，这可能需要几分钟时间
+              </p>
+              <p class="text-sm text-text-medium">
+                请不要关闭页面，分析完成后将自动显示结果
+              </p>
+            </div>
+
+            <!-- 进度条 -->
+            <div class="mb-8">
+              <div class="progress-bar">
+                <div class="progress-bar-fill animate-progress"></div>
+              </div>
+              <div class="mt-2 flex justify-between text-sm text-text-medium">
+                <span>分析中</span>
+                <span>预计剩余时间：25秒</span>
+              </div>
+            </div>
+
+            <!-- 分析步骤 -->
+            <div class="space-y-4">
+              <div class="flex items-center text-success">
+                <i class="fas fa-check-circle mr-3"></i>
+                <span>文本预处理完成</span>
+              </div>
+              <div class="flex items-center text-success">
+                <i class="fas fa-check-circle mr-3"></i>
+                <span>关键信息提取完成</span>
+              </div>
+              <div class="flex items-center text-primary">
+                <i class="fas fa-spinner fa-spin mr-3"></i>
+                <span>需求分析进行中</span>
+              </div>
+              <div class="flex items-center text-text-medium">
+                <i class="far fa-circle mr-3"></i>
+                <span>生成分析报告</span>
+              </div>
+            </div>
+
+            <!-- 取消按钮 -->
+            <div class="mt-8 text-center">
+              <button class="hover:text-error text-text-medium">
+                <i class="fas fa-times mr-2"></i>
+                取消分析
+              </button>
+            </div>
+          </div>
+
+          <!-- 提示卡片 -->
+          <div class="mt-6 rounded-lg bg-primary bg-opacity-5 p-6">
+            <div class="flex items-start">
+              <i class="fas fa-info-circle mr-4 mt-1 text-primary"></i>
+              <div>
+                <h3 class="mb-2 font-medium">分析过程说明</h3>
+                <p class="text-sm text-text-medium">
+                  系统将通过以下步骤进行分析：
+                </p>
+                <ul class="mt-2 space-y-1 text-sm text-text-medium">
+                  <li>1. 文本预处理：清洗和标准化输入文本</li>
+                  <li>2. 关键信息提取：识别重要信息点</li>
+                  <li>3. 需求分析：使用AI模型分析需求特征</li>
+                  <li>4. 报告生成：整理分析结果并生成报告</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="mt-12 border-t border-border bg-white">
+      <div class="container mx-auto px-4 py-6">
+        <div class="text-center text-text-medium">
+          <p>© 2025 InsightMiner 团队. 保留所有权利.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

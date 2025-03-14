@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo '🏗️ 正在检查代码格式...'
+pnpm run format
+
+echo '🔍 正在运行代码检查...'
+pnpm lint-staged
+
+echo '📝 正在检查 TypeScript 类型...'
+pnpm run type-check
