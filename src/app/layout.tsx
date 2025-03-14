@@ -5,10 +5,10 @@ import { Layout } from '@/components/layout/Layout';
 import { trpc } from '@/utils/trpc';
 
 const inter = Inter({ subsets: ['latin'] });
-export const metadata = {
-  title: 'InsightMiner - AI驱动的需求挖掘工具',
-  description: '通过人工智能技术，从文本中智能提炼市场机遇与产品需求洞察',
-};
+// export const metadata = {
+//   title: 'InsightMiner - AI驱动的需求挖掘工具',
+//   description: '通过人工智能技术，从文本中智能提炼市场机遇与产品需求洞察',
+// };
 
 const RootLayout = trpc.withTRPC(function RootLayout({
   children,
