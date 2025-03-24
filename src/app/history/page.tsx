@@ -99,18 +99,24 @@ export default function HistoryPage() {
 
           {/* 历史记录列表 */}
           <div className="space-y-4">
-            {searchResult?.items?.map((item) => (
-              <HistoryItem
-                key={item.id}
-                title={item.title}
-                description={item.inputText}
-                date={format(new Date(item.createdAt), 'yyyy-MM-dd HH:mm')}
-                type={
-                  item.results.length > 0 ? item.results[0].type : '文本分析'
-                }
-                analysisId={item.id}
-              />
-            ))}
+            {searchResult?.items &&
+              searchResult.items.length >= 1 &&
+              searchResult?.items?.map(
+                (item: (typeof searchResult.items)[0]) => (
+                  <HistoryItem
+                    key={item.id}
+                    title={item.title}
+                    description={item.inputText}
+                    date={format(new Date(item.createdAt), 'yyyy-MM-dd HH:mm')}
+                    type={
+                      item.results.length > 0
+                        ? item.results[0].type
+                        : '文本分析'
+                    }
+                    analysisId={item.id}
+                  />
+                )
+              )}
           </div>
 
           {/* 分页 */}
