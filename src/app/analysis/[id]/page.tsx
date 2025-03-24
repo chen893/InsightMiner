@@ -1,5 +1,5 @@
 'use client';
-import { Usable, useEffect } from 'react';
+import { useEffect } from 'react';
 import * as React from 'react';
 import { useRouter } from 'next/navigation'; // 注意这里是 navigation 而不是 router
 import { trpc } from '@/utils/trpc';
@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 export default function AnalysisResultPage({
   params,
 }: {
-  params: Usable<{ id: string }>;
+  params: Promise<{ id: string }>;
 }) {
   const router = useRouter();
 
